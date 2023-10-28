@@ -1,0 +1,39 @@
+<div class="join-group-container">
+    <div class="mat-title join-group-title">Join Group</div>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Join Code</mat-label>
+        <input  matInput [required]="true" name="budget" [(ngModel)]="joinCode" maxlength="4" (keyup)="jobCodeInputKeyUp()">
+    </mat-form-field>
+
+    <div class="display-group-div">
+        <div *ngIf="!hasGroup && joinCode.length < 1" class="no-group-div">
+            <div class="display-group-name mat-title">Enter a Join Code</div>
+        </div>
+        
+        <div *ngIf="!hasGroup && joinCode.length > 0" class="no-group-div">
+            <div class="display-group-name mat-title">No Secret Santa Found...</div>
+        </div>
+
+        <div *ngIf="hasGroup" class="has-group-div">
+            <div class="display-group-name mat-title">{{group.name}}</div>
+            <div class="display-group-admin mat-subheading-2">Hosted By {{group.adminName}}</div>
+        </div>
+    </div>
+
+    <div *ngIf="clickedJoinCount > 0" class="identify-participant-div">
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Who are you?</mat-label>
+            <mat-select [(ngModel)]="identifyParticipant" (selectionChange)="selectIdentifyParticipant()">
+                <mat-option [value]="null" disabled>Select Participant</mat-option>
+                <mat-option *ngFor="let ptcpt of getRemainingParticipants()" [value]="ptcpt">
+                    {{ ptcpt }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <mat-divider class="join-group-divider"></mat-divider>
+
+    <button mat-raised-button color="accent" class="join-group-complete-btn" (click)="clickJoin()" [disabled]="!hasGroup && clickedJoinCount == 0  || clickedJoinCount == 1 && !hasIdentifiedParticipant">Join</button>
+</div>

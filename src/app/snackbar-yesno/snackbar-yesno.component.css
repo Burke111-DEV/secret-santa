@@ -1,0 +1,15 @@
+.snackbar-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.snackbar-body .message {
+    flex-grow: 4
+}
+
+.snackbar-body .btns {
+    display: flex;
+    justify-content: end;
+    flex-grow: 1;
+}

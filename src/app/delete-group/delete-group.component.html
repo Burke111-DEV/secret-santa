@@ -1,0 +1,9 @@
+<div class="group-delete-container">
+    <div class="mat-title group-delete-title">Delete {{group.name}}</div>
+    <div class="mat-body">Are you sure you want to delete the {{group.name}} Secret Santa group?<br><br>This will permanently remove the Secret Santa group from our records.</div>
+    
+    <div class="group-delete-btns-div">
+        <button mat-flat-button color="accent" class="group-delete-btn btn-ok" (click)="clickOK()">OK</button>
+        <button mat-flat-button color="warn" class="group-delete-btn btn-no"  (click)="clickCancel()">Cancel</button>
+    </div>
+</div>

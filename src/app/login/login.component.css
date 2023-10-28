@@ -1,0 +1,32 @@
+.login-container {
+    width: 100%;
+    height: calc(100% - (2 * 8rem));
+    text-align: center;
+    padding: 8rem 0;
+    
+    opacity: 0;
+    transform: translateY(50px);
+    animation: load-in 500ms ease-in 700ms 1 forwards;
+}
+
+@keyframes load-in {
+    from    { opacity: 0; transform: translateY(50px); }
+    to      { opacity: 1; transform: translateY(0); }
+}
+
+.login-btn {
+    font-size: 18px;
+    min-width: 8em;
+    text-align: center;
+    margin: 1em 0;
+}
+
+.leaving {
+    opacity: 1;
+    transform: translateY(0);
+    animation: leaving 500ms ease-in 500ms 1 forwards;
+}
+@keyframes leaving {
+    from    { opacity: 1; transform: translateY(0); }
+    to      { opacity: 0; transform: translateY(50px); }
+}

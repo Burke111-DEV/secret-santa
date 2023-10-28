@@ -1,0 +1,26 @@
+.match-gnrt-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.match-gnrt-title { width: 100%; }
+.match-gnrt-subtitle { opacity: 0.8; }
+
+.match-gnrt-btns-div {
+    width: 100%;
+    margin-top: 2em;
+}
+.match-gnrt-btn {
+    margin: 0 0.5em;
+}
+
+.no-match-pairs-div, .santa-matches-div {
+    width: 80%;
+    margin-top: 1.5em;
+}
+
+table {
+    width: 100%;
+}

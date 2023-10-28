@@ -1,0 +1,32 @@
+.join-group-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.join-group-title { width: 100%; }
+.join-group-subtitle { opacity: 0.8; }
+
+mat-form-field, .question-field-div, .wishlist-template-questions-div { width: 100%;} 
+
+.join-group-divider {
+    width: 70%;
+    margin: 1em 0 0.75em 0;
+}
+
+.display-group-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1em;
+}
+.display-group-name {
+    opacity: 0.7;
+}
+.display-group-admin {
+    opacity: 0.85;
+}
+
+.identify-participant-div { width: 100%; }

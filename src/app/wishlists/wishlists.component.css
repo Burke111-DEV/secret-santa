@@ -1,0 +1,32 @@
+.wishlists-header mat-panel-title {
+    flex-grow: 3;
+}
+
+.wishlists-header mat-panel-description {
+    flex-grow: 1;
+    justify-content: right;
+}
+.accordion-header-btn {
+    align-self: right;
+}
+
+.wishlist-panel-btns {
+    margin: 1em 2em 0.5em 2em;
+}
+.wishlist-panel-btns button {
+    min-width: 7em;
+    margin: 0 0.5em;
+    padding-left: 26px;
+}
+
+.wishlist-item {
+    width: 100%;
+}
+
+.custom-textarea {
+    white-space: pre-line; /* Preserves line breaks */
+    font-family: inherit; /* Optionally inherit font-family */
+    height: auto; /* Allows the textarea to grow in height based on content */
+    resize: none; /* Prevents manual resizing by users */
+    overflow-y: hidden; /* Hides vertical scrollbar if content overflows */
+}

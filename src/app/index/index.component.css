@@ -1,0 +1,71 @@
+.index-container {
+    width: 100%;
+    height: calc(100% - (2 * 8rem));
+    text-align: center;
+    padding: 8rem 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    opacity: 0;
+    transform: translateY(50px);
+    animation: load-in 500ms ease-in 700ms 1 forwards;
+}
+
+@keyframes load-in {
+    from    { opacity: 0; transform: translateY(50px); }
+    to      { opacity: 1; transform: translateY(0); }
+}
+
+.index-main-btn {
+    min-width: 60vw;
+    font-size: 1.2em;
+    padding: 0.125em 0;
+    margin: 0.75em 0;
+}
+
+.index-divider {
+    width: 50%;
+    margin: 1em 0;
+}
+
+app-wishlists {
+    width: 80%;
+    margin: 0.75em 10%;
+}
+
+.groups-div {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.75em 10%;
+    padding-top: 0 !important;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+                0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+                0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    overflow: hidden; /* Ensures that the border and shadow appear correctly */
+}
+
+.group-item {
+    width: 100%;
+    font-family: 'Roboto';
+    transition: 0.2s;
+    cursor: pointer;
+}
+.group-item:hover {
+    background-color: #99999925;
+}
+
+.groups-list-btn {
+    flex: 1;
+    text-align: right;
+}
+
+.bottom-border {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}

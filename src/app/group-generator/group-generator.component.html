@@ -1,0 +1,92 @@
+<div class="group-generator-container">
+    <div class="mat-title group-generator-title">Setup new Secret Santa</div>
+
+    <mat-form-field appearance="outline" class="">
+        <mat-label>Name this Secret Santa</mat-label>
+        <input #nameInput="ngModel" matInput [required]="true" name="name" [(ngModel)]="group.name" (focusout)="nameGroupFocusOut()">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Budget</mat-label>
+        <input #budgetInput="ngModel" matInput [required]="true" name="budget" [(ngModel)]="group.budget" type="number">
+        <span matPrefix>£</span>
+    </mat-form-field>
+
+    <mat-divider class="group-generator-divider"></mat-divider>
+    <div class="mat-subheading-2 group-generator-subtitle">Participants</div>
+
+    <div class="group-participants-div">
+        <div *ngFor="let participant of participants; let i = index; trackBy: trackByIndex">
+            <mat-form-field appearance="outline">
+              <mat-label>Participant {{ i + 1 }}{{ i==0 ? " (You)" : "" }}</mat-label>
+              <input matInput [required]="true" [(ngModel)]="participants[i]" (focusout)="addedPtcptInputFocusOut(i)">
+            </mat-form-field>
+          </div>
+    </div>
+
+    <div class="add-participant-div">
+        <button mat-raised-button color="accent" class="add-participant-btn" (click)="clickAddParticipant()" type="button"><mat-icon>add</mat-icon></button>
+        <div class="add-own-caption mat-caption">Add Another Participant</div>
+    </div>
+
+    <mat-divider class="group-generator-divider"></mat-divider>
+    <div class="mat-subheading-2 group-generator-subtitle">Do-Not-Match (Optional)</div>
+
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Select Participant</mat-label>
+        <mat-select #noMatchPtcptSelect [(ngModel)]="currentNoMatchPtcpt" (selectionChange)="selectNoMatchParticipant(currentNoMatchPtcpt)">
+            <mat-option [value]="null" disabled>Select Participant</mat-option>
+            <mat-option *ngFor="let ptcpt of participants" [value]="ptcpt" [disabled]="noMatchHasBeenSelected(ptcpt)">
+                {{ ptcpt }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div *ngFor="let ptcpt of getObjectKeys(noMatchPairs); let i = index;" class="no-match-pairs-div">
+        <mat-form-field class="form-field" *ngIf="participants.includes(ptcpt)" appearance="outline">
+            <mat-label>Don't match with {{ ptcpt }}</mat-label>
+            <mat-select [(ngModel)]="this.noMatchPairs[ptcpt]" (selectionChange)="selectNoMatchPair(ptcpt)">
+                <mat-option [value]="null">Cancel</mat-option>
+                <div *ngFor="let pair of participants">
+                    <mat-option *ngIf="pair !== ptcpt && participants.includes(pair)" [value]="pair">
+                        {{ pair }}
+                    </mat-option>
+                </div>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <mat-divider class="group-generator-divider"></mat-divider>
+    <div class="mat-subheading-2 group-generator-subtitle">Wishlist Questions</div>
+
+    <mat-form-field class="form-field" appearance="outline" *ngIf="templatesList.length > 0">
+        <mat-label>Select Template</mat-label>
+        <mat-select [(ngModel)]="currentTemplateName" [ngModelOptions]="{standalone: true}" (selectionChange)="selectTemplate(currentTemplateName)">
+            <mat-option *ngFor="let template of templatesList" [value]="template.name">
+                {{ template.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="">
+        <mat-label>Name this Wishlist</mat-label>
+        <input #nameInput="ngModel" matInput [required]="true" name="name" [(ngModel)]="wishlistTemplate.name">
+        <mat-hint *ngIf="nameInput.touched && wishlistTemplate.name.length < 1" align="end">You must enter a name</mat-hint>
+    </mat-form-field>
+
+    <div *ngFor="let question of wishlistTemplate.questions; let i = index; trackBy: trackByIndex" class="wishlist-template-questions-div">
+        <mat-form-field appearance="outline" class="">
+            <mat-label>Question</mat-label>
+            <input #nameInput="ngModel" matInput [required]="true" name="name" [(ngModel)]="wishlistTemplate.questions[i]" (focusout)="questionInputFocusOut(i)">
+        </mat-form-field>
+    </div>
+
+    <div class="add-participant-div">
+        <button mat-raised-button color="accent" class="add-participant-btn" (click)="clickAddQuestion()" type="button"><mat-icon>add</mat-icon></button>
+        <div class="add-own-caption mat-caption">Add Another Question</div>
+    </div>
+    
+    <mat-divider class="group-generator-divider"></mat-divider>
+
+    <button mat-raised-button color="accent" class="group-generator-complete-btn" (click)="clickComplete()">Complete</button>
+</div>

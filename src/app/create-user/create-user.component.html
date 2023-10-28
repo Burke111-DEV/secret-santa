@@ -1,0 +1,14 @@
+<div class="new-user-container">
+    <div class="mat-h1">Create User</div>
+
+    <form #registerForm="ngForm" class="register-form">
+        <mat-form-field appearance="outline" class="">
+            <mat-label>Name</mat-label>
+            <input #nameInput="ngModel" matInput [required]="true" placeholder="" name="name" [(ngModel)]="userData.name">
+            <mat-hint *ngIf="nameInput.dirty && userData.name.length < 1" align="end">You must enter a name</mat-hint>
+        </mat-form-field>
+    </form>
+
+    <button mat-flat-button class="create-user-btn" color="accent" (click)="userCreated()">Create User</button>
+    
+</div>

@@ -1,0 +1,9 @@
+.new-user-container {
+    width: 100%;
+    text-align: center;
+    margin: 2em 0;
+}
+
+.create-user-btn {
+    margin-top: 2em;
+}

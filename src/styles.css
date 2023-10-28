@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+/* For WebKit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 0; /* Set a width for the scrollbar (optional) */
+}
+::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Hide the thumb */
+}
+::-webkit-scrollbar-track {
+    background-color: transparent; /* Hide the track */
+}
+
+
+.centered-text { text-align: center !important; }
+.centered-text .mat-simple-snack-bar-content { width: 100%; }
+
+
+button          { opacity: 0.9; transition: opacity 0.2s; }
+button:hover    { opacity: 1; }
+button.mat-accent, button.mat-primary, button.mat-warn {
+    color: white !important;
+    transition: 0.2s;
+}
+
+.mat-option-text, mat-slide-toggle { font-family: 'Roboto'; }
+
+.mat-form-field-appearance-outline .mat-form-field-prefix { top: 0 !important; }

@@ -1,0 +1,96 @@
+.view-group-container {
+    width: 100%;
+    height: calc(100% - (2 * 8rem));
+    text-align: center;
+    padding: 8rem 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    opacity: 0;
+    transform: translateY(50px);
+    animation: load-in 500ms ease-in 500ms 1 forwards;
+}
+
+@keyframes load-in {
+    from    { opacity: 0; transform: translateY(50px); }
+    to      { opacity: 1; transform: translateY(0); }
+}
+
+.view-group-title {
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+.view-group-main-btn {
+    min-width: 60vw;
+    font-size: 1.2em;
+    padding: 0.125em 0;
+    margin: 0.75em 0;
+}
+
+.view-group-divider {
+    width: 50%;
+    margin: 1em 0;
+}
+
+
+.ptcpt-config-div {
+    margin-top: 2em;
+    width: 80%;
+    margin-bottom: 0.5em;
+}
+
+.ptcpt-config-div .form-field {
+    width: 100%;
+}
+
+.view-group-back-btn {
+    position: absolute;
+    top: 1em;
+    left: 0.5em;
+    font-size: 1em;
+    color: #000000a0;
+}
+
+.group-view-admin-group-details {
+    font-family: 'Roboto';
+    width: 80%;
+    margin-top: 0.5em;
+}
+.group-view-admin-group-details table {
+    width: 100%;
+}
+.group-view-match-caption {
+    margin-bottom: 1em;
+}
+
+.view-group-admin-buttons {
+    /* width: 80%; */
+    margin-top: 2em;
+}
+.view-group-admin-buttons button {
+    margin: 0 0.5em;
+}
+
+.group-view-join-code {
+    font-weight: bold;
+    letter-spacing: 0.5em;
+}
+
+.group-view-match-wishlist-div {
+    width: 80%;
+}
+
+.wishlist-item {
+    width: 100%;
+}
+
+.custom-textarea {
+    white-space: pre-line; /* Preserves line breaks */
+    font-family: inherit; /* Optionally inherit font-family */
+    height: auto; /* Allows the textarea to grow in height based on content */
+    resize: none; /* Prevents manual resizing by users */
+    overflow-y: hidden; /* Hides vertical scrollbar if content overflows */
+  }

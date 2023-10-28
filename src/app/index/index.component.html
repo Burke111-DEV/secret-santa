@@ -1,0 +1,25 @@
+<div class="index-container">
+    
+    <button class="index-main-btn join-btn" mat-flat-button color="accent" (click)="clickJoinGroup()">
+        Join Secret Santa
+    </button>
+
+    <button class="index-main-btn setup-btn" mat-flat-button color="accent" (click)="clickSetupNewGroup()">
+        Setup New Secret Santa
+    </button>
+
+    <mat-divider class="index-divider"></mat-divider>
+
+    <mat-list *ngIf="session.getGroups().length > 0" class="groups-div">
+        <mat-list-item *ngFor="let group of session.getGroups(); index as i;" [routerLink]="['/secretsanta', group.name, i]" routerLinkActive="active" class="group-item" [class.bottom-border]="session.getGroups().length > 1 && i != session.getGroups().length-1">
+            {{ group.name }}
+            <div mat-icon-button class="groups-list-btn">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </div>
+        </mat-list-item>
+    </mat-list>
+    <mat-divider class="index-divider" *ngIf="session.getGroups().length > 0" ></mat-divider>
+
+    <app-wishlists></app-wishlists>
+
+</div>

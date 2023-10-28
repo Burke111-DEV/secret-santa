@@ -1,0 +1,76 @@
+###############
+#### Pages ####
+
+Login
+	// When logging in, pull templates from participating groups and add to local list
+
+Home
+	- Join Secret Santa
+	- Setup New Secret Santa
+	- Groups
+	- Wishlists
+		- Create Wishlist
+		- List of wishlists (click to expand)
+			- List of Qs
+			- Edit / Delete
+	- 
+
+Wishlist Generator
+	- Select template from dropdown
+	- List of Qs
+	- Add Q
+	- Save
+
+Wishlist Template Generator
+	- Select template from dropdown
+	- List of Q Names
+	- Add Q Name
+	- Save
+
+Join Secret Santa
+	- 1. Enter Group Name
+	- 2. Select participant name from list (Ensure not already participating)
+	- 3. Confirm
+
+Setup Secret Santa
+	- 1. Name Group (Must be unique)
+	- 2. List participant names
+	- 3. No-Match Pairs
+	- 4. Template
+	- 5. Confirm
+
+Group
+	- If Admin
+		- If everone is ready - Match Pairs
+		- Cancel (delete group)
+	- If not ready:
+		- Select wishlist
+		- submit wishlist
+	- If is ready, but still waiting:
+		- Waiting For: (list of non-enterred participants)
+	- If everyone ready:
+		- If not generated yet, waiting for admin.
+		- Else, Shows your match's wishlist
+	
+
+
+##############
+#### Data ####
+
+Wishlists
+	- Name (ensure unique when create)
+	- Qs and As
+
+Wishlist Templates
+	- Name (ensure unique when create)
+	- List of Qs
+
+Groups
+	- Name (string)
+	- Admin Name (string)
+	- Participants (map of names (string) to uids (string) )
+	- Participants Ready (map of names (string) to true/false)
+	- No-match pairs (map of names (string) to names (string))
+	- wishlists (map of names (string) to wishlist name (string))
+	- isGenerated (boolean)
+	- Santas (Map of Santa Names (string) to Recipient Names (string))

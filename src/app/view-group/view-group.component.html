@@ -1,0 +1,90 @@
+<div class="view-group-container">
+    <div class="view-group-back-btn">
+        <button mat-button [routerLink]="['/']">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    
+    <div class="mat-title view-group-title">{{group.name}}</div>
+    <mat-divider class="view-group-divider"></mat-divider>
+
+    <div class="mat-subheading-2 view-group-budget">£{{group.budget | number:'1.2-2'}} Budget</div>
+
+    <div class="ptcpt-config-div">
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Select Wishlist</mat-label>
+            <mat-select #wishlistSelect [(ngModel)]="selectedWishlist" (selectionChange)="selectWishlist()">
+                <mat-option [value]="null" disabled>Select Wishlist</mat-option>
+                <mat-option *ngFor="let list of session.getWishlists()" [value]="list">
+                    {{ list.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-slide-toggle [(ngModel)]="isReady" (change)="readySliderToggled()" [disabled]="group.isGenerated">{{isReady ? 'Ready' : 'Not Ready'}}</mat-slide-toggle>
+    </div>
+
+    <mat-divider *ngIf="isAdmin && !group.isGenerated" class="view-group-divider"></mat-divider>
+
+    <div *ngIf="isAdmin && !group.isGenerated" class="group-view-admin-join-code">
+        <div class="group-view-join-code mat-subheading-2">{{group.joinCode}}</div>
+        <div class="group-view-match-caption mat-body">Share this join code with your friends.</div>
+    </div>
+
+    <mat-divider *ngIf="group.isGenerated" class="view-group-divider"></mat-divider>
+
+    <div *ngIf="group.isGenerated" class="group-view-match-wishlist-div">
+        <div class="group-view-match-name mat-subheading-1">You are {{recipientName}}'s Secret Santa!</div>
+        <div class="group-view-match-caption mat-body">{{recipientName}}'s Christmas List:</div>
+        <div *ngFor="let q of getObjectKeys(recipientWishlist)">
+            <mat-form-field appearance="outline" *ngIf="q != 'name'" class="wishlist-item">
+                <mat-label>{{ q }}</mat-label>
+                <textarea matInput [rows]="getLines(recipientWishlist[q])" [readonly]="true" class="custom-textarea" >{{ recipientWishlist[q] }}</textarea>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-divider *ngIf="isAdmin" class="view-group-divider"></mat-divider>
+
+    <div *ngIf="isAdmin" class="group-view-admin-group-details">
+        <table mat-table [dataSource]="participants" class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element; index as i"> {{i+1}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="attendance">
+              <th mat-header-cell *matHeaderCellDef> Attendance </th>
+              <td mat-cell *matCellDef="let element"> {{checkAttendance(element) ? "True" : "False" }} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="ready">
+              <th mat-header-cell *matHeaderCellDef> Ready </th>
+              <td mat-cell *matCellDef="let element"> {{group.participantsReady[element]  ? "True" : "False" }} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="wishlist">
+                <th mat-header-cell *matHeaderCellDef> Wishlist </th>
+                <td mat-cell *matCellDef="let element"> {{group.wishlists[element]}} </td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+
+    <div *ngIf="isAdmin" class="view-group-admin-buttons">
+        <button mat-flat-button color="accent" [disabled]="!canGenerate()" (click)="clickGenerate()">Matchmake</button>
+        <button mat-flat-button color="warn" (click)="clickDeleteGroup()">Delete</button>
+    </div>
+</div>

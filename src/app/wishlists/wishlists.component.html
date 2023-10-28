@@ -1,0 +1,43 @@
+<mat-accordion class="wishlists-list">
+  <mat-expansion-panel class="wishlists-header" hideToggle #wishlistsHeaderPanel (opened)="doNothing('header')">
+    <mat-expansion-panel-header>
+      <mat-panel-title >
+          Wishlists
+      </mat-panel-title>
+
+      <mat-panel-description>
+        <button mat-flat-button color="accent" class="accordion-header-btn" (click)="createWishlist()"> <mat-icon>add</mat-icon> </button>
+      </mat-panel-description>
+
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel *ngIf="session.getUser().wishlists.length < 1" hideToggle #wishlistsEmptyPanel (opened)="doNothing('empty')">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            You have no wishlists.
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel *ngFor="let wishlist of session.getUser().wishlists">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          {{ wishlist.name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    
+    <div class="wishlist-items" *ngFor="let q of getObjectKeys(wishlist)">
+      <mat-form-field appearance="outline" *ngIf="q != 'name'" class="wishlist-item">
+          <mat-label>{{ q }}</mat-label>
+          <textarea matInput [rows]="getLines(wishlist[q])" [readonly]="true" class="custom-textarea" >{{ wishlist[q] }}</textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="wishlist-panel-btns">
+      <button mat-flat-button class="edit-btn" color="accent" (click)="editWishList(wishlist.name)"> Edit <mat-icon>edit</mat-icon> </button>
+      <button mat-flat-button class="edit-btn" color="warn" (click)="clickDeleteWishlist(wishlist.name)"> Delete <mat-icon>delete</mat-icon> </button>
+    </div>
+    
+  </mat-expansion-panel>
+</mat-accordion>

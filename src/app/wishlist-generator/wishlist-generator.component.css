@@ -1,0 +1,64 @@
+.wishlist-generator-container {
+    
+}
+
+.wishlist-generator-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    text-align: center;
+}
+
+.wishlist-generator-divider {
+    width: 70%;
+    margin-bottom: 1em;
+}
+
+mat-form-field, .question-field-div { width: 100%;} 
+
+.add-question-div {
+    width: 100%;
+    min-height: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.add-question-btn {
+    width: 3em;
+    max-height: 2.6em;
+    justify-self: start;
+    margin-bottom: 1.5em;
+}
+.add-question-field {
+    margin-right: 1em;
+    width: 0;
+    opacity: 0;
+    animation: expand-out 0.3s ease-out 0.2s 1 forwards;
+}
+.add-question-field.hide {
+    width: calc(100% - 5em);
+    opacity: 1;
+    animation: shrink-in 0.3s linear 0.2s 1 forwards;
+}
+@keyframes expand-out {
+    0%      { width: 0; opacity: 0; }
+    5%      { width: 0; opacity: 1; }
+    100%    { width: calc(100% - 5em); opacity: 1; }
+}
+@keyframes shrink-in {
+    0%      { width: calc(100% - 5em); opacity: 1; }
+    95%      { width: 0; opacity: 0; }
+    100%    { width: 0; opacity: 0; }
+}
+
+.add-question-save-btn {
+    margin: 0.5em 0 1em 0;
+}
+.add-own-caption {
+    height: 2.6em;
+    line-height: 1em;
+    margin-left: 1.5em;
+    opacity: 0.7;
+}

@@ -1,0 +1,43 @@
+<div class="wishlist-generator-container">
+    <div class="mat-title">Create Wishlist</div>
+    <form class="wishlist-generator-form" (ngSubmit)="saveWishlist()">
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Select Template</mat-label>
+            <mat-select [(ngModel)]="currentTemplateName" [ngModelOptions]="{standalone: true}" (selectionChange)="selectTemplate(currentTemplateName)">
+                <mat-option *ngFor="let template of templatesList" [value]="template.name">
+                    {{ template.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline" class="">
+            <mat-label>Name this Wishlist</mat-label>
+            <input #nameInput="ngModel" matInput [required]="true" name="name" [(ngModel)]="wishlist.name">
+            <mat-hint *ngIf="nameInput.dirty && wishlist.name.length < 1" align="end">You must enter a name</mat-hint>
+            <!-- <mat-hint *ngIf="nameInput.dirty" align="end">You must enter a name</mat-hint> -->
+        </mat-form-field>
+      
+        <mat-divider class="wishlist-generator-divider"></mat-divider>
+
+        <div *ngFor="let question of template.questions" class="question-field-div">
+            <mat-form-field appearance="outline" class="">
+                <mat-label>{{ question }}</mat-label>
+                <!-- <input matInput placeholder="" [name]="question" [(ngModel)]="wishlist[question]"> -->
+                <textarea matInput placeholder="" [name]="question" [(ngModel)]="wishlist[question]"  (keyup)="autoGrowTextZone($event)"></textarea>
+            </mat-form-field>
+        </div>
+
+        <mat-divider class="wishlist-generator-divider"></mat-divider>
+
+        <div class="add-question-div">
+            <mat-form-field *ngIf="showNewQuestionField" appearance="outline" class="add-question-field" [class.hide]="hideNewQuestionField">
+                <mat-label>Add New Question Name</mat-label>
+                <input matInput placeholder="" [(ngModel)]="newQuestionName" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+            <button mat-raised-button [color]="showNewQuestionField ? 'accent' : 'primary'" class="add-question-btn" (click)="clickAddQuestion()" type="button"><mat-icon>add</mat-icon></button>
+            <div *ngIf="!showNewQuestionField" class="add-own-caption mat-caption">Add your own</div>
+        </div>
+
+        <button mat-raised-button color="accent" class="add-question-save-btn" type="submit">Save</button>
+    </form>
+</div>
